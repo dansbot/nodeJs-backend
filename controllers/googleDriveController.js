@@ -1,12 +1,11 @@
 const { google } = require("googleapis");
-const { GOOGLE_SERVICE_ACCOUNT } = require("../config/googleServiceAcct");
 
 // set up Google Drive API client
 const SCOPES = ["https://www.googleapis.com/auth/drive.readonly"];
 const auth = new google.auth.JWT(
-  GOOGLE_SERVICE_ACCOUNT.client_email,
+  process.env.GOOGLE_DRIVE_CLIENT_EMAIL,
   null,
-  GOOGLE_SERVICE_ACCOUNT.private_key,
+  process.env.GOOGLE_DRIVE_PRIVATE_KEY,
   SCOPES
 );
 const drive = google.drive({ version: "v3", auth });
